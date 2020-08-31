@@ -6,26 +6,22 @@ import unittest
 class NewVisitorTest(unittest.TestCase):  
 
    def setUp(self):
-      options = webdriver.ChromeOptions()
-      options.setBinary()
-      webdriver.get()
-      self.browser = webdriver.
+      self.browser = webdriver.Firefox()
 
    def tearDown(self):
       self.browser.quit()
 
    def test_can_see_blogs_on_homepage(self):
       # Sarah has heard about a cool new online blog. She goes
-      # to check out its homepage
+      # to check out the homepage
       self.browser.get('http://localhost:8000')
 
       # She notices the owner's name in the blog's browser title
-      self.assertIn('Jonas', self.browser.title)
-      # as well as a large text mentioning blog on the website
-      header_text = self.browser.find_element_by_tag_name('h1').text  
-      self.assertIn('Blog', header_text)
+      self.assertIn('Jonas Schäfer', self.browser.title)
       
-      self.fail('Finish the test!')
+      # as well as a large text mentioning the name on the website itself
+      header_text = self.browser.find_element_by_tag_name('h1').text  
+      self.assertIn('Jonas Schäfer', header_text)
       
       
 
