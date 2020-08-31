@@ -19,6 +19,11 @@ body {
    text-decoration: none;
 }
 
+.page-header a {
+   text-decoration: none;
+   color: white;
+}
+
 .content {
    margin-left: 40px;
 }
