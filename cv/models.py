@@ -6,7 +6,7 @@ class Cv(models.Model):
    projects = models.ManyToManyField('Project')
    skills = models.ManyToManyField('Skill')
    education = models.ManyToManyField('Education')
-   last_updated = models.DateTimeField(default=timezone.now)
+   last_updated = models.DateTimeField(default=timezone.now, blank=True)
    
    def publish(self):
       self.save()

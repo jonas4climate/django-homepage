@@ -21,6 +21,7 @@ def cv_edit(request):
       form = CvForm(request.POST, instance=cv)
       if form.is_valid():
          cv = form.save(commit=False)
+         form.save
          cv.last_updated = timezone.now()
          cv.save()
          return redirect('/cv', pk=cv.pk)
