@@ -6,7 +6,8 @@ import unittest
 class NewVisitorTest(unittest.TestCase):  
 
    def setUp(self):
-      options = ChromeOptions()
+      options = webdriver.ChromeOptions()
+      options.setBinary()
       webdriver.get()
       self.browser = webdriver.
 
