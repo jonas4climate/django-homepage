@@ -14,7 +14,7 @@ def cv_view(request):
    if not (work_experiences or projects or skills or education):
       raise Http404
    #cv = get_object_or_404(Cv, pk=obj.pk)
-   return render(request, 'cv/cv.html', {'works': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
+   return render(request, 'cv/cv.html', {'work_experiences': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
    
 #def cv_edit(request):
 #   cv = get_object_or_404(Cv)
