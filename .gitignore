@@ -1,6 +1,6 @@
 # General things, config files etc.
 *.vscode
-
+static/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
