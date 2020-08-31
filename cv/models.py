@@ -10,6 +10,9 @@ class Cv(models.Model):
    
    def publish(self):
       self.save()
+      
+   def __str__(self):
+      return str(self.work_experiences) + ',' + str(self.projects) + ',' + str(self.skills) + ',' + str(self.education) + ',' + str(self.last_updated)
    
 class WorkExperience(models.Model):
    job_title = models.CharField(max_length=100)

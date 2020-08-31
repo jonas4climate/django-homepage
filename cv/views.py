@@ -10,7 +10,9 @@ def cv_view(request):
    obj = Cv.objects.first()
    if not obj:
       raise Http404
-   cv = get_object_or_404(Cv, pk=obj.id)
+   cv = get_object_or_404(Cv, pk=obj.pk)
+   print(obj.pk)
+   print(cv)
    return render(request, 'cv.html', {'cv': cv})
    
 def cv_edit(request):
