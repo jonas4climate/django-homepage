@@ -1,18 +1,18 @@
 from django.db import models
 from django.utils import timezone
 
-class Cv(models.Model):
-   work_experiences = models.ManyToManyField('WorkExperience')
-   projects = models.ManyToManyField('Project')
-   skills = models.ManyToManyField('Skill')
-   education = models.ManyToManyField('Education')
-   last_updated = models.DateTimeField(default=timezone.now, blank=True)
-   
-   def publish(self):
-      self.save()
-      
-   def __str__(self):
-      return str(self.work_experiences) + ',' + str(self.projects) + ',' + str(self.skills) + ',' + str(self.education) + ',' + str(self.last_updated)
+#class Cv(models.Model):
+#   work_experiences = models.ManyToManyField('WorkExperience')
+#   projects = models.ManyToManyField('Project')
+#   skills = models.ManyToManyField('Skill')
+#   education = models.ManyToManyField('Education')
+#   last_updated = models.DateTimeField(default=timezone.now, blank=True)
+#   
+#   def publish(self):
+#      self.save()
+#      
+#   def __str__(self):
+#      return 'cv - ' + str(self.last_updated)
    
 class WorkExperience(models.Model):
    job_title = models.CharField(max_length=100)

@@ -11,9 +11,7 @@ def cv_view(request):
    if not obj:
       raise Http404
    cv = get_object_or_404(Cv, pk=obj.pk)
-   print(obj.pk)
-   print(cv)
-   return render(request, 'cv.html', {'cv': cv})
+   return render(request, 'cv/cv.html', {'cv': cv})
    
 def cv_edit(request):
    cv = get_object_or_404(Cv)
@@ -21,10 +19,9 @@ def cv_edit(request):
       form = CvForm(request.POST, instance=cv)
       if form.is_valid():
          cv = form.save(commit=False)
-         form.save
          cv.last_updated = timezone.now()
          cv.save()
-         return redirect('/cv', pk=cv.pk)
+         return redirect('/cv', pk=cv.id)
    else:
       form = CvForm()
    return render(request, 'blog/post_edit.html', {'form': form})

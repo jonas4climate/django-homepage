@@ -2,11 +2,23 @@
 
 {% block content %}
    <div class="cv">
+      <h2>Work Experience</h2>
+      {% if cv.work_experiences == None %}
+         Damn
+      {% endif %}
+
+      <h2>Education</h2>
+
+      <h2>Projects</h2>
+
+      <h2>Skills</h2>
+      
       <div class="date">
             {{ cv.last_updated }}
       </div>
-      <!--{% if user.is_authenticated %}
+
+      {% if user.is_authenticated %}
          <a class="btn btn-default" href="{% url 'cv_edit' %}"><span class="glyphicon glyphicon-pencil"></span></a>
-      {% endif %}-->
+      {% endif %}
    </div>
 {% endblock %}
