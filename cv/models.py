@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Cv(models.Model):
    work_experiences = models.ManyToManyField('WorkExperience')

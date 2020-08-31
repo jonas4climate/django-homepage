@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
+from django.utils import timezone
+
 from .models import *
 from .forms import CvForm
 
@@ -12,7 +14,7 @@ def cv_view(request):
    return render(request, 'cv.html', {'cv': cv})
    
 def cv_edit(request):
-   cv = get_object_or_404(Cv, pk=pk)
+   cv = get_object_or_404(Cv)
    if request.method == "POST":
       form = CvForm(request.POST, instance=cv)
       if form.is_valid():

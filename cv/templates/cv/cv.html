@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+   <div class="cv">
+      <div class="date">
+            {{ cv.last_updated }}
+      </div>
+      {% if user.is_authenticated %}
+         <a class="btn btn-default" href="{% url 'cv_edit' %}"><span class="glyphicon glyphicon-pencil"></span></a>
+      {% endif %}
+   </div>
+{% endblock %}
