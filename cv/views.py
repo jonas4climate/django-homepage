@@ -47,7 +47,7 @@ def cv_edit(request, sub, pk):
    elif sub == 'edu':
       return edit_education(request, pk)
    else:
-      return Http404
+      raise Http404
    
 def cv_add(request, sub):
    if sub == 'work':
@@ -59,7 +59,7 @@ def cv_add(request, sub):
    elif sub == 'edu':
       form = EducationForm(request.POST) if request.method == 'POST' else EducationForm()
    else:
-      Http404
+      raise Http404
       
    if form.is_valid():
       component = form.save(commit=False)
@@ -68,6 +68,19 @@ def cv_add(request, sub):
       return redirect('cv_edit_overview')
    
    return render(request, 'cv/cv_add.html', {'form': form})
+
+def cv_delete(request, sub, pk):
+   if sub == 'work':
+      WorkExperience.objects.filter(pk=pk).delete()
+   elif sub == 'project':
+      Project.objects.filter(pk=pk).delete()
+   elif sub == 'skill':
+      Skill.objects.filter(pk=pk).delete()
+   elif sub == 'edu':
+      Education.objects.filter(pk=pk).delete()
+   else:
+      raise Http404
+   return redirect('cv_edit_overview')
          
    
 
