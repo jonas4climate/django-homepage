@@ -2,9 +2,15 @@
 
 {% block content %}
    <div class="cv">
+      <h2>Personal Details</h2>
+      Name: Jonas Schäfer <br>
+      Location: Birmingham - United Kingdom <br>
+      Contact: <a href="tel:+447542546497">+447542546497</a> | <a href="mailto:jonas.schaefer00@gmail.com">jonas.schaefer00@gmail.com</a> <br>
+      LinkedIn: <a href="http://www.linkedin.com/in/jonas-schaefer">jonas-schaefer</a> | GitHub: <a href="https://github.com/j0ner0n">j0ner0n</a>
       <h2>Work Experience</h2>
       {% for work in work_experiences %}
-         <p>{{ work.job_title }} | {{ work.company_name }}</p>
+         <h4>{{ work.job_title }} | {{ work.company_name }}</h4>
+         <p>{{ work.time }} | {{ work.employment_type }} | {{ work.location }}</p>
       {% endfor %}
 
       <h2>Education</h2>
@@ -16,5 +22,8 @@
       <div class="date">
            
       </div>
+      {% if user.is_authenticated %}
+         <a class="btn btn-default" href="/cv/edit/"><span class="glyphicon glyphicon-pencil"></span></a>
+      {% endif %}
    </div>
 {% endblock %}

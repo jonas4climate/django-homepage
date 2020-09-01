@@ -2,5 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-   path('', views.cv_view, name='cv_view')
+   path('', views.post_cv_view, name='post_cv_view'),
+   path('edit/', views.post_cv_edit_overview, name='post_cv_edit_overview'),
+   path('edit/<int:pk>', views.post_cv_edit, name='post_cv_edit')
 ]

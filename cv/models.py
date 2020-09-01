@@ -1,51 +1,49 @@
 from django.db import models
 from django.utils import timezone
 
-#class Cv(models.Model):
-#   work_experiences = models.ManyToManyField('WorkExperience')
-#   projects = models.ManyToManyField('Project')
-#   skills = models.ManyToManyField('Skill')
-#   education = models.ManyToManyField('Education')
-#   last_updated = models.DateTimeField(default=timezone.now, blank=True)
-#   
-#   def publish(self):
-#      self.save()
-#      
-#   def __str__(self):
-#      return 'cv - ' + str(self.last_updated)
    
 class WorkExperience(models.Model):
-   job_title = models.CharField(max_length=100)
-   company_name = models.CharField(max_length=50)
-   time = models.CharField(max_length=50)
+   job_title = models.CharField(max_length=100, null=False)
+   company_name = models.CharField(max_length=50, null=False)
+   time_start = models.DateField(default=timezone.now)
+   time_end = models.DateField(default=timezone.now)
    employment_type = models.CharField(max_length=50)
    location = models.CharField(max_length=50)
    details = models.TextField()
+   last_updated = models.DateTimeField(default=timezone.now)
    
    def __str__(self):
-      return self.job_title
+      return f'{self.job_title} at {self.company_name}'
    
 class Project(models.Model):
-   name = models.CharField(max_length=100)
+   name = models.CharField(max_length=100, null=False)
    project_type = models.CharField(max_length=50)
-   time = models.CharField(max_length=50)
+   time_start = models.DateField(default=timezone.now)
+   time_end = models.DateField(default=timezone.now)
    details = models.TextField()
+   last_updated = models.DateTimeField(default=timezone.now)
    
    def __str__(self):
       return self.name
    
 class Skill(models.Model):
-   name = models.CharField(max_length=50)
+   name = models.CharField(max_length=50, null=False)
    proficiency = models.CharField(max_length=50)
+   last_updated = models.DateTimeField(default=timezone.now)
    
    def __str__(self):
       return self.name
    
 class Education(models.Model):
-   institution = models.CharField(max_length=50)
+   institution = models.CharField(max_length=50, null=False)
    course = models.CharField(max_length=50)
-   time = models.CharField(max_length=50)
+   time_start = models.DateField(default=timezone.now)
+   time_end = models.DateField(default=timezone.now)
    location = models.CharField(max_length=50)
    details = models.TextField()
+   last_updated = models.DateTimeField(default=timezone.now)
+   
+   def __str__(self):
+      return self.institution
    
    
