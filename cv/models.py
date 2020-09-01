@@ -11,6 +11,7 @@ class WorkExperience(models.Model):
    location = models.CharField(max_length=50)
    details = models.TextField()
    last_updated = models.DateTimeField(default=timezone.now)
+   show = models.BooleanField(default=True)
    
    def __str__(self):
       return f'{self.job_title} at {self.company_name}'
@@ -22,6 +23,7 @@ class Project(models.Model):
    time_end = models.DateField(default=timezone.now)
    details = models.TextField()
    last_updated = models.DateTimeField(default=timezone.now)
+   show = models.BooleanField(default=True)
    
    def __str__(self):
       return self.name
@@ -30,6 +32,7 @@ class Skill(models.Model):
    name = models.CharField(max_length=50, null=False)
    proficiency = models.CharField(max_length=50)
    last_updated = models.DateTimeField(default=timezone.now)
+   show = models.BooleanField(default=True)
    
    def __str__(self):
       return self.name
@@ -42,6 +45,7 @@ class Education(models.Model):
    location = models.CharField(max_length=50)
    details = models.TextField()
    last_updated = models.DateTimeField(default=timezone.now)
+   show = models.BooleanField(default=True)
    
    def __str__(self):
       return self.institution

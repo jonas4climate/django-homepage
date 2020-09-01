@@ -9,8 +9,10 @@
       LinkedIn: <a href="http://www.linkedin.com/in/jonas-schaefer">jonas-schaefer</a> | GitHub: <a href="https://github.com/j0ner0n">j0ner0n</a>
       <h2>Work Experience</h2>
       {% for work in work_experiences %}
-         <h4>{{ work.job_title }} | {{ work.company_name }}</h4>
-         <p>{{ work.time }} | {{ work.employment_type }} | {{ work.location }}</p>
+         {% if work.show %}
+            <h4>{{ work.job_title }} | {{ work.company_name }}</h4>
+            <p>{{ work.time_start }} - {{ work.time_end }} | {{ work.employment_type }} | {{ work.location }}</p>
+         {% endif %}
       {% endfor %}
 
       <h2>Education</h2>

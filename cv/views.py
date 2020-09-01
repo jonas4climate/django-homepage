@@ -7,10 +7,10 @@ from .forms import *
 
 # Create your views here.
 def post_cv_view(request):
-   work_experiences = WorkExperience.objects.all()
-   projects = Project.objects.all()
+   work_experiences = WorkExperience.objects.all().order_by('-time_end')
+   projects = Project.objects.all().order_by('-time_end')
    skills = Skill.objects.all()
-   education = Education.objects.all()
+   education = Education.objects.all().order_by('-time_end')
    return render(request, 'cv/cv.html', {'work_experiences': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
 
 def post_cv_edit_overview(request):
