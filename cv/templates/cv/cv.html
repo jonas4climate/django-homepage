@@ -44,17 +44,43 @@
 
       <h2>Skills</h2>
       <hr>
+      <h4>Programming:</h4>
       <ul>
-      {% for skill in skills %}
-         {% if skill.show %}
-            <li>{{ skill.skill_type }}: {{ skill.name }} ({{ skill.proficiency }})</li>
-         {% endif %}
-      {% endfor %}
+         {% for skill in skills %}
+            {% if skill.show and skill.skill_type == 'P' %}
+               <li>{{ skill.name }} ({{ skill.proficiency }})</li>
+            {% endif %}
+         {% endfor %}
       </ul>
-      
-      <div class="date">
-           
-      </div>
+      <br>
+      <h4>Markup:</h4>
+      <ul>
+         {% for skill in skills %}
+            {% if skill.show and skill.skill_type == 'M' %}
+               <li>{{ skill.name }} ({{ skill.proficiency }})</li>
+            {% endif %}
+         {% endfor %}
+      </ul>
+      <br>
+      <h4>Technologies and Tools:</h4>
+      <ul>
+         {% for skill in skills %}
+            {% if skill.show and skill.skill_type == 'TT' %}
+               <li>{{ skill.name }} ({{ skill.proficiency }})</li>
+            {% endif %}
+         {% endfor %}
+      </ul>
+      <br>
+      <h4>Languages:</h4>
+      <ul>
+         {% for skill in skills %}
+            {% if skill.show and skill.skill_type == 'L' %}
+               <li>{{ skill.name }} ({{ skill.proficiency }})</li>
+            {% endif %}
+         {% endfor %}
+      </ul>
+      <br>
+
       {% if user.is_authenticated %}
          <a class="btn btn-default" href="/cv/edit/"><span class="glyphicon glyphicon-pencil"></span></a>
       {% endif %}
