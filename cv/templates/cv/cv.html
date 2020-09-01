@@ -3,46 +3,54 @@
 {% block content %}
    <div class="cv">
       <h2>Personal Details</h2>
+      <hr>
       Name: Jonas Schäfer <br>
       Location: Birmingham - United Kingdom <br>
       Contact: <a href="tel:+447542546497">+447542546497</a> | <a href="mailto:jonas.schaefer00@gmail.com">jonas.schaefer00@gmail.com</a> <br>
       LinkedIn: <a href="http://www.linkedin.com/in/jonas-schaefer">jonas-schaefer</a> | GitHub: <a href="https://github.com/j0ner0n">j0ner0n</a>
+      
       <h2>Work Experience</h2>
+      <hr>
       {% for work in work_experiences %}
          {% if work.show %}
-            <h4>{{ work.job_title }} | {{ work.company_name }}</h4>
+            <h3>{{ work.job_title }} | {{ work.company_name }}</h3>
             <p>{{ work.time_start }} - {{ work.time_end }} | {{ work.employment_type }} | {{ work.location }}</p>
             <p>{{ work.details }}</p>
-            <hr>
+            <br>
          {% endif %}
       {% endfor %}
 
       <h2>Education</h2>
+      <hr>
       {% for edu in education %}
          {% if edu.show %}
-            <h4>{{ edu.course }} | {{ edu.institution }}</h4>
+            <h3>{{ edu.course }} | {{ edu.institution }}</h3>
             <p>{{ edu.time_start }} - {{ edu.time_end }} | {{ edu.location }}</p>
             <p>{{ edu.details }}</p>
-            <hr>
+            <br>
          {% endif %}
       {% endfor %}
 
       <h2>Projects</h2>
+      <hr>
       {% for project in projects %}
          {% if project.show %}
-            <h4>{{ project.name }} | {{ project.project_type }}</h4>
+            <h3>{{ project.name }} | {{ project.project_type }}</h3>
             <p>{{ project.time_start }} - {{ project.time_end }}</p>
             <p>{{ project.details }}</p>
-            <hr>
+            <br>
          {% endif %}
       {% endfor %}
 
       <h2>Skills</h2>
+      <hr>
+      <ul>
       {% for skill in skills %}
          {% if skill.show %}
-            <p>{{ skill.name }} ({{ skill.proficiency }})</p>
+            <li>{{ skill.name }} ({{ skill.proficiency }})</li>
          {% endif %}
       {% endfor %}
+      </ul>
       
       <div class="date">
            
