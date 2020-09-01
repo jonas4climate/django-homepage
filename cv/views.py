@@ -78,7 +78,7 @@ def edit_work_experience(request, pk):
       form = WorkExperienceForm(request.POST, instance=work_experience)
       if form.is_valid():
          work_experience = form.save()
-         return redirect('/cv', pk=work_experience.pk)
+         return redirect('/cv/edit')
    else:
       form = WorkExperienceForm(instance=work_experience)
    return render(request, 'cv/cv_edit.html', {'form': form})
@@ -90,7 +90,7 @@ def edit_project(request, pk):
       form = ProjectForm(request.POST, instance=project)
       if form.is_valid():
          project = form.save()
-         return redirect('/cv', pk=project.pk)
+         return redirect('/cv/edit')
    else:
       form = ProjectForm(instance=project)
    return render(request, 'cv/cv_edit.html', {'form': form})
@@ -102,7 +102,7 @@ def edit_skill(request, pk):
       form = SkillForm(request.POST, instance=skill)
       if form.is_valid():
          skill = form.save()
-         return redirect('/cv', pk=skill.pk)
+         return redirect('/cv/edit')
    else:
       form = SkillForm(instance=skill)
    return render(request, 'cv/cv_edit.html', {'form': form})
@@ -111,10 +111,10 @@ def edit_education(request, pk):
    """ Helper function for editing education """
    education = get_object_or_404(Education, pk=pk)
    if request.method == "POST":
-      form = Education(request.POST, instance=education)
+      form = EducationForm(request.POST, instance=education)
       if form.is_valid():
          education = form.save()
-         return redirect('/cv', pk=education.pk)
+         return redirect('/cv/edit')
    else:
       form = EducationForm(instance=education)
    return render(request, 'cv/cv_edit.html', {'form': form})

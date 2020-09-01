@@ -12,14 +12,37 @@
          {% if work.show %}
             <h4>{{ work.job_title }} | {{ work.company_name }}</h4>
             <p>{{ work.time_start }} - {{ work.time_end }} | {{ work.employment_type }} | {{ work.location }}</p>
+            <p>{{ work.details }}</p>
+            <hr>
          {% endif %}
       {% endfor %}
 
       <h2>Education</h2>
+      {% for edu in education %}
+         {% if edu.show %}
+            <h4>{{ edu.course }} | {{ edu.institution }}</h4>
+            <p>{{ edu.time_start }} - {{ edu.time_end }} | {{ edu.location }}</p>
+            <p>{{ edu.details }}</p>
+            <hr>
+         {% endif %}
+      {% endfor %}
 
       <h2>Projects</h2>
+      {% for project in projects %}
+         {% if project.show %}
+            <h4>{{ project.name }} | {{ project.project_type }}</h4>
+            <p>{{ project.time_start }} - {{ project.time_end }}</p>
+            <p>{{ project.details }}</p>
+            <hr>
+         {% endif %}
+      {% endfor %}
 
       <h2>Skills</h2>
+      {% for skill in skills %}
+         {% if skill.show %}
+            <p>{{ skill.name }} ({{ skill.proficiency }})</p>
+         {% endif %}
+      {% endfor %}
       
       <div class="date">
            
