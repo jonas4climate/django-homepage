@@ -47,7 +47,7 @@
       <ul>
       {% for skill in skills %}
          {% if skill.show %}
-            <li>{{ skill.name }} ({{ skill.proficiency }})</li>
+            <li>{{ skill.skill_type }}: {{ skill.name }} ({{ skill.proficiency }})</li>
          {% endif %}
       {% endfor %}
       </ul>
