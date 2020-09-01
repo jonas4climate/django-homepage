@@ -23,6 +23,19 @@ def post_cv_edit_overview(request):
    return render(request, 'cv/post_edit_overview.html', {'work_experiences': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
 
 def post_cv_edit(request, sub, pk):
+   """Get editing form page for specific CV component uniquely defined by sub and pk
+
+   Args:
+       request (HttpRequest): Request
+       sub (str): type of CV component
+       pk (int): key to identify object in the db
+
+   Raises:
+       HttpResponseNotAllowed: Only allowed to be called when authenticated prior
+
+   Returns:
+       [type]: [description]
+   """
    if not request.user.is_authenticated:
       raise HttpResponseNotAllowed
    if sub == 'work':
@@ -36,8 +49,30 @@ def post_cv_edit(request, sub, pk):
    else:
       return Http404
    
+def post_cv_add(request, sub):
+   if sub == 'work':
+      form = WorkExperienceForm(request.POST) if request.method == 'POST' else WorkExperienceForm()
+   elif sub == 'project':
+      form = ProjectForm(request.POST) if request.method == 'POST' else ProjectForm()
+   elif sub == 'skill':
+      form = SkillForm(request.POST) if request.method == 'POST' else SkillForm()
+   elif sub == 'edu':
+      form = EducationForm(request.POST) if request.method == 'POST' else EducationForm()
+   else:
+      Http404
+      
+   if form.is_valid():
+      component = form.save(commit=False)
+      component.last_updated = timezone.now()
+      component.save()
+      return redirect('post_cv_edit_overview')
    
+   return render(request, 'cv/post_cv_add.html', {'form': form})
+         
+   
+
 def edit_work_experience(request, pk):
+   """ Helper function for editing work experience """
    work_experience = get_object_or_404(WorkExperience, pk=pk)
    if request.method == "POST":
       form = WorkExperienceForm(request.POST, instance=work_experience)
@@ -45,10 +80,11 @@ def edit_work_experience(request, pk):
          work_experience = form.save()
          return redirect('/cv', pk=work_experience.pk)
    else:
-      form = WorkExperienceForm()
+      form = WorkExperienceForm(instance=work_experience)
    return render(request, 'cv/post_edit.html', {'form': form})
 
 def edit_project(request, pk):
+   """ Helper function for editing projects """
    project = get_object_or_404(Project, pk=pk)
    if request.method == "POST":
       form = ProjectForm(request.POST, instance=project)
@@ -56,10 +92,11 @@ def edit_project(request, pk):
          project = form.save()
          return redirect('/cv', pk=project.pk)
    else:
-      form = ProjectForm()
+      form = ProjectForm(instance=project)
    return render(request, 'cv/post_edit.html', {'form': form})
 
 def edit_skill(request, pk):
+   """ Helper function for editing skills """
    skill = get_object_or_404(Skill, pk=pk)
    if request.method == "POST":
       form = SkillForm(request.POST, instance=skill)
@@ -67,10 +104,11 @@ def edit_skill(request, pk):
          skill = form.save()
          return redirect('/cv', pk=skill.pk)
    else:
-      form = SkillForm()
+      form = SkillForm(instance=skill)
    return render(request, 'cv/post_edit.html', {'form': form})
 
 def edit_education(request, pk):
+   """ Helper function for editing education """
    education = get_object_or_404(Education, pk=pk)
    if request.method == "POST":
       form = Education(request.POST, instance=education)
@@ -78,5 +116,5 @@ def edit_education(request, pk):
          education = form.save()
          return redirect('/cv', pk=education.pk)
    else:
-      form = Education()
+      form = EducationForm(instance=education)
    return render(request, 'cv/post_edit.html', {'form': form})
