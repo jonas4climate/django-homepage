@@ -6,23 +6,23 @@ from .models import *
 from .forms import *
 
 # Create your views here.
-def post_cv_view(request):
+def cv_view(request):
    work_experiences = WorkExperience.objects.all().order_by('-time_end')
    projects = Project.objects.all().order_by('-time_end')
    skills = Skill.objects.all()
    education = Education.objects.all().order_by('-time_end')
    return render(request, 'cv/cv.html', {'work_experiences': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
 
-def post_cv_edit_overview(request):
+def cv_edit_overview(request):
    if not request.user.is_authenticated:
       raise HttpResponseNotAllowed
    work_experiences = WorkExperience.objects.all()
    projects = Project.objects.all()
    skills = Skill.objects.all()
    education = Education.objects.all()
-   return render(request, 'cv/post_edit_overview.html', {'work_experiences': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
+   return render(request, 'cv/cv_edit_overview.html', {'work_experiences': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
 
-def post_cv_edit(request, sub, pk):
+def cv_edit(request, sub, pk):
    """Get editing form page for specific CV component uniquely defined by sub and pk
 
    Args:
@@ -49,7 +49,7 @@ def post_cv_edit(request, sub, pk):
    else:
       return Http404
    
-def post_cv_add(request, sub):
+def cv_add(request, sub):
    if sub == 'work':
       form = WorkExperienceForm(request.POST) if request.method == 'POST' else WorkExperienceForm()
    elif sub == 'project':
@@ -65,9 +65,9 @@ def post_cv_add(request, sub):
       component = form.save(commit=False)
       component.last_updated = timezone.now()
       component.save()
-      return redirect('post_cv_edit_overview')
+      return redirect('cv_edit_overview')
    
-   return render(request, 'cv/post_cv_add.html', {'form': form})
+   return render(request, 'cv/cv_add.html', {'form': form})
          
    
 
@@ -81,7 +81,7 @@ def edit_work_experience(request, pk):
          return redirect('/cv', pk=work_experience.pk)
    else:
       form = WorkExperienceForm(instance=work_experience)
-   return render(request, 'cv/post_edit.html', {'form': form})
+   return render(request, 'cv/cv_edit.html', {'form': form})
 
 def edit_project(request, pk):
    """ Helper function for editing projects """
@@ -93,7 +93,7 @@ def edit_project(request, pk):
          return redirect('/cv', pk=project.pk)
    else:
       form = ProjectForm(instance=project)
-   return render(request, 'cv/post_edit.html', {'form': form})
+   return render(request, 'cv/cv_edit.html', {'form': form})
 
 def edit_skill(request, pk):
    """ Helper function for editing skills """
@@ -105,7 +105,7 @@ def edit_skill(request, pk):
          return redirect('/cv', pk=skill.pk)
    else:
       form = SkillForm(instance=skill)
-   return render(request, 'cv/post_edit.html', {'form': form})
+   return render(request, 'cv/cv_edit.html', {'form': form})
 
 def edit_education(request, pk):
    """ Helper function for editing education """
@@ -117,4 +117,4 @@ def edit_education(request, pk):
          return redirect('/cv', pk=education.pk)
    else:
       form = EducationForm(instance=education)
-   return render(request, 'cv/post_edit.html', {'form': form})
+   return render(request, 'cv/cv_edit.html', {'form': form})
