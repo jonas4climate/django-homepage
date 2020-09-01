@@ -22,9 +22,19 @@ def post_cv_edit_overview(request):
    education = Education.objects.all()
    return render(request, 'cv/post_edit_overview.html', {'work_experiences': work_experiences, 'projects': projects, 'skills': skills, 'education': education})
 
-def post_cv_edit(request, pk):
-   if not request.user.is_authenticated():
+def post_cv_edit(request, sub, pk):
+   if not request.user.is_authenticated:
       raise HttpResponseNotAllowed
+   if sub == 'work':
+      return edit_work_experience(request, pk)
+   elif sub == 'project':
+      return edit_project(request, pk)
+   elif sub == 'skill':
+      return edit_skill(request, pk)
+   elif sub == 'edu':
+      return edit_education(request, pk)
+   else:
+      return Http404
    
    
 def edit_work_experience(request, pk):

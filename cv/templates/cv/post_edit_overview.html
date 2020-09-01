@@ -4,22 +4,22 @@
    <div>
       <h2>Work Experience</h2>
       {% for work in work_experiences %}
-         <h4><a href="{% url 'post_cv_edit' pk=work.pk %}">{{ work.job_title }}</a></h4>
+         <h4><a href="{% url 'post_cv_edit' sub='work' pk=work.pk %}">{{ work.job_title }}</a></h4>
       {% endfor %}
 
       <h2>Education</h2>
       {% for project in projects %}
-         <h4><a href="{% url 'post_cv_edit' pk=project.pk %}">{{ project.name }}</a></h4>
+         <h4><a href="{% url 'post_cv_edit' sub='project' pk=project.pk %}">{{ project.name }}</a></h4>
       {% endfor %}
 
       <h2>Projects</h2>
       {% for skill in skills %}
-         <h4><a href="{% url 'post_cv_edit' pk=skill.pk %}">{{ skill.name }}</a></h4>
+         <h4><a href="{% url 'post_cv_edit' sub='skill' pk=skill.pk %}">{{ skill.name }}</a></h4>
       {% endfor %}
 
       <h2>Skills</h2>
       {% for edu in education %}
-         <h4><a href="{% url 'post_cv_edit' pk=edu.pk %}">{{ edu.institution }}</a></h4>
+         <h4><a href="{% url 'post_cv_edit' sub='edu' pk=edu.pk %}">{{ edu.institution }}</a></h4>
       {% endfor %}
    </div>
 {% endblock %}
