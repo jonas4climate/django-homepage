@@ -6,7 +6,7 @@
       <h2>Work Experience <a href="{% url 'cv_add' sub='work' %}">[+]</a></h2>
       {% for work in work_experiences %}
          <h4>
-            <a href="{% url 'cv_edit' sub='work' pk=work.pk %}">{{ work.job_title }}</a>
+            <a href="{% url 'cv_edit' sub='work' pk=work.pk %}">{{ work }}</a>
             <a href="{% url 'cv_delete' sub='work' pk=work.pk %}">[-]</a>
          </h4>
       {% endfor %}
@@ -14,15 +14,15 @@
       <h2>Projects <a href="{% url 'cv_add' sub='project' %}">[+]</a></h2>
       {% for project in projects %}
          <h4>
-            <a href="{% url 'cv_edit' sub='project' pk=project.pk %}">{{ project.name }}</a>
-            <a href="{% url 'cv_delete' sub='project' pk=project.pk %}">[-]]</a>
+            <a href="{% url 'cv_edit' sub='project' pk=project.pk %}">{{ project }}</a>
+            <a href="{% url 'cv_delete' sub='project' pk=project.pk %}">[-]</a>
          </h4>
       {% endfor %}
 
       <h2>Skills <a href="{% url 'cv_add' sub='skill' %}">[+]</a></h2>
       {% for skill in skills %}
          <h4>
-            <a href="{% url 'cv_edit' sub='skill' pk=skill.pk %}">{{ skill.name }}</a>
+            <a href="{% url 'cv_edit' sub='skill' pk=skill.pk %}">{{ skill }}</a>
             <a href="{% url 'cv_delete' sub='skill' pk=skill.pk %}">[-]</a>
          </h4>
       {% endfor %}
@@ -30,7 +30,7 @@
       <h2>Education <a href="{% url 'cv_add' sub='edu' %}">[+]</a></h2>
       {% for edu in education %}
          <h4>
-            <a href="{% url 'cv_edit' sub='edu' pk=edu.pk %}">{{ edu.institution }}</a>
+            <a href="{% url 'cv_edit' sub='edu' pk=edu.pk %}">{{ edu }}</a>
             <a href="{% url 'cv_delete' sub='edu' pk=edu.pk %}">[-]</a>
          </h4>
       {% endfor %}

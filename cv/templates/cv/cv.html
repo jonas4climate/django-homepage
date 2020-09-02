@@ -14,67 +14,75 @@
       {% for work in work_experiences %}
          {% if work.show %}
             <h3>{{ work.job_title }} | {{ work.company_name }}</h3>
-            <p>{{ work.time_start }} - {{ work.time_end }} | {{ work.employment_type }} | {{ work.location }}</p>
-            <p>{{ work.details }}</p>
+            <p>{{ work.time_start }} {% if work.time_end %} - {{ work.time_end }} {% endif %} | {{ work.employment_type }} | {{ work.location }}</p>
+            <p>{{ work.details|linebreaksbr }}</p>
             <br>
          {% endif %}
       {% endfor %}
+
 
       <h2>Education</h2>
       <hr>
       {% for edu in education %}
          {% if edu.show %}
             <h3>{{ edu.course }} | {{ edu.institution }}</h3>
-            <p>{{ edu.time_start }} - {{ edu.time_end }} | {{ edu.location }}</p>
-            <p>{{ edu.details }}</p>
+            <p>{{ edu.time_start }} {% if edu.time_end %} - {{ edu.time_end }} {% endif %} | {{ edu.location }}</p>
+            <p>{{ edu.details|linebreaksbr }}</p>
             <br>
          {% endif %}
       {% endfor %}
+
 
       <h2>Projects</h2>
       <hr>
       {% for project in projects %}
          {% if project.show %}
             <h3>{{ project.name }} | {{ project.project_type }}</h3>
-            <p>{{ project.time_start }} - {{ project.time_end }}</p>
-            <p>{{ project.details }}</p>
+            <p>{{ project.time_start }} {% if project.time_end %} - {{ project.time_end }} {% endif %}</p>
+            <p>{{ project.details|linebreaksbr }}</p>
             <br>
          {% endif %}
       {% endfor %}
 
+
       <h2>Skills</h2>
       <hr>
+
       <h4>Programming:</h4>
       <ul>
          {% for skill in skills %}
-            {% if skill.show and skill.skill_type == 'P' %}
+            {% if skill.show and skill.skill_type == 'Programming' %}
                <li>{{ skill.name }} ({{ skill.proficiency }})</li>
             {% endif %}
          {% endfor %}
       </ul>
       <br>
+
       <h4>Markup:</h4>
       <ul>
          {% for skill in skills %}
-            {% if skill.show and skill.skill_type == 'M' %}
+            {% if skill.show and skill.skill_type == 'Markup' %}
                <li>{{ skill.name }} ({{ skill.proficiency }})</li>
             {% endif %}
          {% endfor %}
       </ul>
       <br>
+
       <h4>Technologies and Tools:</h4>
       <ul>
          {% for skill in skills %}
-            {% if skill.show and skill.skill_type == 'TT' %}
+            {% if skill.show and skill.skill_type == 'Technologies and Tools' %}
                <li>{{ skill.name }} ({{ skill.proficiency }})</li>
             {% endif %}
          {% endfor %}
       </ul>
       <br>
+
+      <!-- Native, Fluent, Proficient, Conversational, Beginner -->
       <h4>Languages:</h4>
       <ul>
          {% for skill in skills %}
-            {% if skill.show and skill.skill_type == 'L' %}
+            {% if skill.show and skill.skill_type == 'Languages' %}
                <li>{{ skill.name }} ({{ skill.proficiency }})</li>
             {% endif %}
          {% endfor %}

@@ -3,52 +3,52 @@ from django.utils import timezone
 
    
 class WorkExperience(models.Model):
-   job_title = models.CharField(max_length=100, null=False)
+   job_title = models.CharField(max_length=100)
    company_name = models.CharField(max_length=50, null=False)
-   time_start = models.DateField(default=timezone.now)
-   time_end = models.DateField(blank=True, null=True)
+   time_start = models.CharField(max_length=20)
+   time_end = models.CharField(max_length=20, blank=True, null=True)
    employment_type = models.CharField(max_length=50)
-   location = models.CharField(max_length=50)
+   location = models.CharField(max_length=30)
    details = models.TextField()
    last_updated = models.DateTimeField(default=timezone.now)
    show = models.BooleanField(default=True)
    
    def __str__(self):
-      return f'{self.job_title} at {self.company_name}'
+      return f'{self.job_title} at {self.company_name} ({self.employment_type})'
    
 class Project(models.Model):
-   name = models.CharField(max_length=100, null=False)
+   name = models.CharField(max_length=100)
    project_type = models.CharField(max_length=50)
-   time_start = models.DateField(default=timezone.now)
-   time_end = models.DateField(blank=True, null=True)
+   time_start = models.CharField(max_length=20)
+   time_end = models.CharField(max_length=20, blank=True, null=True)
    details = models.TextField()
    last_updated = models.DateTimeField(default=timezone.now)
    show = models.BooleanField(default=True)
    
    def __str__(self):
-      return self.name
+      return f'{self.project_type}: {self.name}'
    
 class Skill(models.Model):
-   name = models.CharField(max_length=50, null=False)
-   skill_type = models.CharField(max_length=2, choices=[('P', 'Programming'), ('M', 'Markup'), ('TT', 'Technologies and Tools'), ('L', 'Languages')])
-   proficiency = models.CharField(max_length=50)
+   name = models.CharField(max_length=50)
+   skill_type = models.CharField(max_length=25, choices=[('Programming', 'Programming'), ('Markup', 'Markup'), ('Technologies and Tools', 'Technologies and Tools'), ('Languages', 'Languages')])
+   proficiency = models.IntegerField(choices=[(1, '1/5'), (2, '2/5'), (3, '3/5'), (4, '4/5'), (5, '5/5')], blank=True, null=True)
    last_updated = models.DateTimeField(default=timezone.now)
    show = models.BooleanField(default=True)
    
    def __str__(self):
-      return self.name
+      return f'{self.skill_type}: {self.name}'
    
 class Education(models.Model):
-   institution = models.CharField(max_length=50, null=False)
+   institution = models.CharField(max_length=50)
    course = models.CharField(max_length=50)
-   time_start = models.DateField(default=timezone.now)
-   time_end = models.DateField(blank=True, null=True)
-   location = models.CharField(max_length=50)
+   time_start = models.CharField(max_length=20)
+   time_end = models.CharField(max_length=20, blank=True, null=True)
+   location = models.CharField(max_length=30)
    details = models.TextField()
    last_updated = models.DateTimeField(default=timezone.now)
    show = models.BooleanField(default=True)
    
    def __str__(self):
-      return self.institution
+      return f'{self.course} at {self.institution}'
    
    
